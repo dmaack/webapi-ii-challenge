@@ -40,9 +40,17 @@ router.post('/:id/comments', (req, res) => {
     }
 
 })
-// router.get('/', (req, res) => { // 4
-    
-// })
+
+router.get('/', (req, res) => { // 4
+    Data.find()
+    .then(post => {
+        res.status(201).json(post)
+    })
+    .catch(() => {
+        res.status(500).json({ error: "The posts information could not be retrieved." })
+    })
+})
+
 // router.get('/:id', (req,res) => {
 
 // })
