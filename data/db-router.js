@@ -67,9 +67,22 @@ router.get('/:id', (req,res) => {
     })
 
 })
-// router.get('/:id/comments', (req,res) => {
 
-// })
+router.get('/:id/comments', (req,res) => {
+    const commentId = req.params.id
+
+    Data.findCommentById(commentId)
+    .then(text => {
+        if(text) {
+            res.status(200).json(text)
+        } else {
+            res.status(404).json({ message: "The post with the specified ID does not exist." })
+        }
+    })
+    .catch(() => {
+        res.status(500).json({ error: "The comments information could not be retrieved." })
+    })
+})
 // router.delete('/:id', (req,res) => {
 
 // })
